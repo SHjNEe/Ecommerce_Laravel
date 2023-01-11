@@ -31,8 +31,15 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
     Route::get('dashboard', [App\Http\Controllers\Admin\DashboardController::class, 'index']);
 
     //Category
+    Route::controller(App\Http\Controllers\Admin\CategoryController::class)->group(function () {
+        Route::get('category', 'index')->name('category.list');
+        Route::get('category/create', 'create')->name('category.create');
+        Route::get('category/{category}/edit', 'edit')->name('category.edit');
 
-    Route::get('category', [App\Http\Controllers\Admin\CategoryController::class, 'index'])->name('category.list');
-    Route::get('category/create', [App\Http\Controllers\Admin\CategoryController::class, 'create'])->name('category.create');
-    Route::post('category', [App\Http\Controllers\Admin\CategoryController::class, 'store'])->name('category.store');
+        Route::post('category', 'store')->name('category.store');
+        Route::put('category/{category}', 'update')->name('category.update');
+        Route::delete('category/{category}', 'destroy')->name('category.delete');
+    });
+
+    Route::get('brands', App\Http\Livewire\Admin\Brand\Index::class)->name('brand.index');
 });
