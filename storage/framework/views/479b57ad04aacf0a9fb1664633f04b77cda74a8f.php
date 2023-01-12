@@ -14,8 +14,8 @@
         </a>
         <div class="collapse" id="ui-basic">
           <ul class="nav flex-column sub-menu">
-            <li class="nav-item"> <a class="nav-link" href="{{ route('category.create') }}">Add Category</a></li>
-            <li class="nav-item"> <a class="nav-link" href="{{ route('category.list') }}">Category List</a></li>
+            <li class="nav-item"> <a class="nav-link" href="<?php echo e(route('category.create')); ?>">Add Category</a></li>
+            <li class="nav-item"> <a class="nav-link" href="<?php echo e(route('category.list')); ?>">Category List</a></li>
           </ul>
         </div>
       </li>
@@ -27,7 +27,7 @@
         </a>
         <div class="collapse" id="brands">
           <ul class="nav flex-column sub-menu">
-            <li class="nav-item"> <a class="nav-link" href="{{ route('brand.index') }}">Brands List</a></li>
+            <li class="nav-item"> <a class="nav-link" href="<?php echo e(route('brand.index')); ?>">Brands List</a></li>
           </ul>
         </div>
       </li>
@@ -39,8 +39,8 @@
         </a>
         <div class="collapse" id="products">
           <ul class="nav flex-column sub-menu">
-            <li class="nav-item"> <a class="nav-link" href="{{ route('product.list') }}">View Products</a></li>
-            <li class="nav-item"> <a class="nav-link" href="{{ route('product.create') }}">Add Products</a></li>
+            <li class="nav-item"> <a class="nav-link" href="<?php echo e(route('product.list')); ?>">View Products</a></li>
+            <li class="nav-item"> <a class="nav-link" href="<?php echo e(route('product.create')); ?>">Add Products</a></li>
           </ul>
         </div>
       </li>
@@ -92,3 +92,4 @@
       </li>
     </ul>
   </nav>
+<?php /**PATH /home/ubuntu/Workspaces/Ecommerce_Laravel/resources/views/layouts/inc/admin/sidebar.blade.php ENDPATH**/ ?>
