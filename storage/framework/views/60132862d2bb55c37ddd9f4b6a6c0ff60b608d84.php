@@ -60,6 +60,7 @@
   <script src="<?php echo e(asset('admin/js/jquery.cookie.js')); ?>" type="text/javascript"></script>
   <?php echo \Livewire\Livewire::scripts(); ?>
 
+  <?php echo $__env->yieldPushContent('script'); ?>
 
 </body>
 </html>

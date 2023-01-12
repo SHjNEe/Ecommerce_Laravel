@@ -14,8 +14,33 @@
         </a>
         <div class="collapse" id="ui-basic">
           <ul class="nav flex-column sub-menu">
-            <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Add Category</a></li>
+            <li class="nav-item"> <a class="nav-link" href="<?php echo e(route('category.create')); ?>">Add Category</a></li>
             <li class="nav-item"> <a class="nav-link" href="<?php echo e(route('category.list')); ?>">Category List</a></li>
+          </ul>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-bs-toggle="collapse" href="#brands" aria-expanded="false" aria-controls="brands">
+          <i class="mdi mdi-circle-outline menu-icon"></i>
+          <span class="menu-title">Brands</span>
+          <i class="menu-arrow"></i>
+        </a>
+        <div class="collapse" id="brands">
+          <ul class="nav flex-column sub-menu">
+            <li class="nav-item"> <a class="nav-link" href="<?php echo e(route('brand.index')); ?>">Brands List</a></li>
+          </ul>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-bs-toggle="collapse" href="#products" aria-expanded="false" aria-controls="brands">
+          <i class="mdi mdi-circle-outline menu-icon"></i>
+          <span class="menu-title">Products</span>
+          <i class="menu-arrow"></i>
+        </a>
+        <div class="collapse" id="products">
+          <ul class="nav flex-column sub-menu">
+            <li class="nav-item"> <a class="nav-link" href="<?php echo e(route('product.list')); ?>">View Products</a></li>
+            <li class="nav-item"> <a class="nav-link" href="<?php echo e(route('product.create')); ?>">Add Products</a></li>
           </ul>
         </div>
       </li>
@@ -66,4 +91,5 @@
         </a>
       </li>
     </ul>
-  </nav><?php /**PATH /Users/trungs_macos/Desktop/Workspace/Ecommerce_Laravel/resources/views/layouts/inc/admin/sidebar.blade.php ENDPATH**/ ?>
+  </nav>
+<?php /**PATH /Users/trungs_macos/Desktop/Workspace/Ecommerce_Laravel/resources/views/layouts/inc/admin/sidebar.blade.php ENDPATH**/ ?>

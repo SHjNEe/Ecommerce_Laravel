@@ -33,13 +33,13 @@ class  ProductFormRequest extends FormRequest
             'original_price' => ['required', 'integer'],
             'selling_price' => ['required', 'integer'],
             'quantity' => ['required', 'integer'],
-            // 'trending' => ['required', 'integer'],
-            // 'status' => ['required', 'integer'],
+            'trending' => ['required'],
+            'status' => ['required'],
             'meta_title' => ['required', 'string'],
             'meta_description' => ['required', 'string'],
             'meta_keyword' => ['required', 'string'],
-
-            'image' => ['nullable', 'mimes:jpg,jpeg,png'],
+            'image' => 'nullable|array|max:5',
+            'image.*' => 'mimes:jpeg,jpg,png',
 
 
         ];

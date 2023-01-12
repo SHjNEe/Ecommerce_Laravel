@@ -47,6 +47,11 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
 
         Route::get('product', 'index')->name('product.list');
         Route::get('product/create', 'create')->name('product.create');
+        Route::get('product/{product}/edit', 'edit')->name('product.edit');
+        Route::get('product/{product}/delete', 'destroy')->name('product.destroy');
+        Route::put('product/{product}/edit', 'update')->name('product.update');
         Route::post('product', 'store');
+
+        Route::get('product-image/{product_image_id}/delete', 'destroyImage');
     });
 });
