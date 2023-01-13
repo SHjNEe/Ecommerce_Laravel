@@ -58,6 +58,7 @@
   <!-- End custom js for this page-->
 
   <script src="<?php echo e(asset('admin/js/jquery.cookie.js')); ?>" type="text/javascript"></script>
+  <?php echo $__env->yieldContent('scripts'); ?>
   <?php echo \Livewire\Livewire::scripts(); ?>
 
   <?php echo $__env->yieldPushContent('script'); ?>

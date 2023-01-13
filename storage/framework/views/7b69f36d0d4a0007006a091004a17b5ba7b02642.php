@@ -45,6 +45,12 @@
                                 data-bs-target="#image-tab-pane" type="button" role="tab"
                                 aria-controls="image-tab-pane" aria-selected="false">Image</button>
                         </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="color-tab" data-bs-toggle="tab"
+                                data-bs-target="#color-tab-pane" type="button" role="tab" aria-controls="color-tab-pane"
+                                aria-selected="false">Color</button>
+                        </li>
+
 
                     </ul>
                     <div class="tab-content" id="myTabContent">
@@ -289,6 +295,57 @@ unset($__errorArgs, $__bag); ?>
                                 <?php endif; ?>
                             </div>
                         </div>
+                        <div class="tab-pane fade" id="color-tab-pane" role="tabpanel" aria-labelledby="color-tab"
+                        tabindex="0">
+                            <div class="mb-3 mt-3">
+                                <h4>Add Produt Color</h4>
+                                <div class="row">
+
+                                    <?php $__empty_1 = true; $__currentLoopData = $colors; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $color): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+                                        <div class="col-md-6 border">
+                                            Color: <input type="checkbox" name="colors[]" value="<?php echo e($color->id); ?>"> <?php echo e($color->name); ?>
+
+                                            <br/>
+                                            Quantity: <input type="number" name="colorquantity[]" style="border: 1px solid; width: 70px;">
+                                        </div>
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
+                                    <h1>No colors</h1>
+                                    <?php endif; ?>
+
+                                </div>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <td>Color Name</td>
+                                            <td>Quantity</td>
+                                            <td>Delete</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php $__currentLoopData = $product->productColors; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $prodColor): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+
+                                        <tr class="prod-color-tr">
+                                            <td><?php echo e($prodColor->color->name); ?></td>
+                                            <td>
+                                                <div class="input-group mb-3" style="width: 150px">
+                                                    <input type="text"  class="form-control form-control-sm productColorQuantity" value="<?php echo e($prodColor->quantity); ?>">
+                                                    <button type="button" class="btn btn-primary text-white btn-sm updateProductColorBtn" value="<?php echo e($prodColor->id); ?>">Update</button>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <button type="button" class="btn btn-danger btn-sm text-white deleteProductColorBtn" onclick="return confirm('Are you sure you want to delete this item')" value="<?php echo e($prodColor->id); ?>">Delete</button>
+                                            </td>
+                                        </tr>
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                       
+                                      
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
 
                     </div>
                     <div>
@@ -300,6 +357,57 @@ unset($__errorArgs, $__bag); ?>
         </div>
     </div>
 </div>
+
+<?php $__env->stopSection(); ?>
+
+<?php $__env->startSection('scripts'); ?>
+
+<script>
+    $(document).ready(function() {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $(document).on('click', '.updateProductColorBtn', function(e) {
+            const product_id = "<?php echo e($product->id); ?>";
+            const prod_color_id = $(this).val();
+            const qty = $(this).closest('.prod-color-tr').find('.productColorQuantity').val();
+            if(qty <= 0) {
+                return false
+            } else {
+                const data = {
+                    product_id,
+                    qty
+                }
+                $.ajax({
+                    type: 'POST',
+                    url: "/admin/product-color/"+prod_color_id,
+                    data: data,
+                    success: function (response) {
+                        alert(response.message)
+                    }
+                })
+            }
+        });
+
+        $(document).on('click', '.deleteProductColorBtn', function(e) {
+            const prod_color_id = $(this).val();
+            const thisClick = $(this);
+            $.ajax({
+                type: 'GET',
+                    url: "/admin/product-color/"+prod_color_id,
+                    success: function (response) {
+                        thisClick.closest('.prod-color-tr').remove()
+                        alert(response.message);
+
+                    }
+            })
+
+
+        })
+    });
+</script>
 
 <?php $__env->stopSection(); ?>
 

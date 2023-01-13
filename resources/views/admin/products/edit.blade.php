@@ -46,6 +46,12 @@
                                 data-bs-target="#image-tab-pane" type="button" role="tab"
                                 aria-controls="image-tab-pane" aria-selected="false">Image</button>
                         </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="color-tab" data-bs-toggle="tab"
+                                data-bs-target="#color-tab-pane" type="button" role="tab" aria-controls="color-tab-pane"
+                                aria-selected="false">Color</button>
+                        </li>
+
 
                     </ul>
                     <div class="tab-content" id="myTabContent">
@@ -208,6 +214,56 @@
                                 @endif
                             </div>
                         </div>
+                        <div class="tab-pane fade" id="color-tab-pane" role="tabpanel" aria-labelledby="color-tab"
+                        tabindex="0">
+                            <div class="mb-3 mt-3">
+                                <h4>Add Produt Color</h4>
+                                <div class="row">
+
+                                    @forelse ($colors as $color )
+                                        <div class="col-md-6 border">
+                                            Color: <input type="checkbox" name="colors[]" value="{{ $color->id }}"> {{ $color->name }}
+                                            <br/>
+                                            Quantity: <input type="number" name="colorquantity[]" style="border: 1px solid; width: 70px;">
+                                        </div>
+                                    @empty
+                                    <h1>No colors</h1>
+                                    @endforelse
+
+                                </div>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <td>Color Name</td>
+                                            <td>Quantity</td>
+                                            <td>Delete</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach($product->productColors as $prodColor)
+
+                                        <tr class="prod-color-tr">
+                                            <td>{{ $prodColor->color->name }}</td>
+                                            <td>
+                                                <div class="input-group mb-3" style="width: 150px">
+                                                    <input type="text"  class="form-control form-control-sm productColorQuantity" value="{{ $prodColor->quantity }}">
+                                                    <button type="button" class="btn btn-primary text-white btn-sm updateProductColorBtn" value="{{ $prodColor->id }}">Update</button>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <button type="button" class="btn btn-danger btn-sm text-white deleteProductColorBtn" onclick="return confirm('Are you sure you want to delete this item')" value="{{ $prodColor->id }}">Delete</button>
+                                            </td>
+                                        </tr>
+                                        @endforeach
+                                       
+                                      
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
 
                     </div>
                     <div>
@@ -219,5 +275,56 @@
         </div>
     </div>
 </div>
+
+@endsection
+
+@section('scripts')
+
+<script>
+    $(document).ready(function() {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $(document).on('click', '.updateProductColorBtn', function(e) {
+            const product_id = "{{ $product->id }}";
+            const prod_color_id = $(this).val();
+            const qty = $(this).closest('.prod-color-tr').find('.productColorQuantity').val();
+            if(qty <= 0) {
+                return false
+            } else {
+                const data = {
+                    product_id,
+                    qty
+                }
+                $.ajax({
+                    type: 'POST',
+                    url: "/admin/product-color/"+prod_color_id,
+                    data: data,
+                    success: function (response) {
+                        alert(response.message)
+                    }
+                })
+            }
+        });
+
+        $(document).on('click', '.deleteProductColorBtn', function(e) {
+            const prod_color_id = $(this).val();
+            const thisClick = $(this);
+            $.ajax({
+                type: 'GET',
+                    url: "/admin/product-color/"+prod_color_id,
+                    success: function (response) {
+                        thisClick.closest('.prod-color-tr').remove()
+                        alert(response.message);
+
+                    }
+            })
+
+
+        })
+    });
+</script>
 
 @endsection
