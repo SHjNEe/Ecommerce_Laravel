@@ -11,11 +11,11 @@
             </div>
             <div class="card-body">
                 @if($errors->any())
-                    <div class="alert alert-warning">
-                        @foreach ($errors->all() as $error )
-                            <div>{{ $error }}</div>
-                        @endforeach
-                    </div>
+                <div class="alert alert-warning">
+                    @foreach ($errors->all() as $error )
+                    <div>{{ $error }}</div>
+                    @endforeach
+                </div>
 
                 @endif
                 <form action="{{ url('admin/product') }}" method="POST" enctype="multipart/form-data">
@@ -38,8 +38,13 @@
                         </li>
                         <li class="nav-item" role="presentation">
                             <button class="nav-link" id="image-tab" data-bs-toggle="tab"
-                                data-bs-target="#image-tab-pane" type="button" role="tab"
-                                aria-controls="image-tab-pane" aria-selected="false">Image</button>
+                                data-bs-target="#image-tab-pane" type="button" role="tab" aria-controls="image-tab-pane"
+                                aria-selected="false">Image</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="color-tab" data-bs-toggle="tab"
+                                data-bs-target="#color-tab-pane" type="button" role="tab" aria-controls="color-tab-pane"
+                                aria-selected="false">Color</button>
                         </li>
 
                     </ul>
@@ -57,14 +62,14 @@
                                     @endforeach
                                 </select>
                                 @error('category_id')
-                                    <small class="text-danger">{{ $message }}</small>
+                                <small class="text-danger">{{ $message }}</small>
                                 @enderror
                             </div>
                             <div class="mb-3">
                                 <label for="">Product Name</label>
                                 <input type="text" name="name" class="form-control">
                                 @error('name')
-                                    <small class="text-danger">{{ $message }}</small>
+                                <small class="text-danger">{{ $message }}</small>
                                 @enderror
                             </div>
 
@@ -97,7 +102,7 @@
 
                             <div class="mb-3">
                                 <label for="">Product Description</label>
-                                <textarea  name="description" class="form-control" rows="10"></textarea>
+                                <textarea name="description" class="form-control" rows="10"></textarea>
                                 @error('description')
                                 <small class="text-danger">{{ $message }}</small>
                                 @enderror
@@ -165,16 +170,12 @@
 
                             <div class="mb-3">
                                 <label for="">Trending</label><br>
-                                <input type="checkbox" name="trending"
-                                    style="width: 20px; height: 20px" 
-                                    />
+                                <input type="checkbox" name="trending" style="width: 20px; height: 20px" />
                             </div>
 
                             <div class="mb-3">
                                 <label for="">Status</label><br>
-                                <input type="checkbox" name="status"
-                                    style="width: 20px; height: 20px" 
-                                    />
+                                <input type="checkbox" name="status" style="width: 20px; height: 20px" />
                             </div>
                         </div>
                         <div class="tab-pane fade" id="image-tab-pane" role="tabpanel" aria-labelledby="image-tab"
@@ -182,6 +183,25 @@
                             <div class="mb-3 mt-3">
                                 <label for="">Upload Product Images</label>
                                 <input type="file" name="image[]" multiple class="form-control">
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="color-tab-pane" role="tabpanel" aria-labelledby="color-tab"
+                            tabindex="0">
+                            <div class="mb-3 mt-3">
+                                <label for="" class="mb-3">Select Color</label>
+                                <div class="row">
+
+                                    @forelse ($colors as $color )
+                                        <div class="col-md-3 border">
+                                            Color: <input type="checkbox" name="colors[]" value="{{ $color->id }}"> {{ $color->name }}
+                                            <br/>
+                                            Quantity: <input type="number" name="colorquantity[]" style="border: 1px solid; width: 70px;">
+                                        </div>
+                                    @empty
+                                    <h1>No colors</h1>
+                                    @endforelse
+
+                                </div>
                             </div>
                         </div>
 

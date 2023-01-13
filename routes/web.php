@@ -54,4 +54,14 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
 
         Route::get('product-image/{product_image_id}/delete', 'destroyImage');
     });
+
+    Route::controller(App\Http\Controllers\Admin\ColorController::class)->group(function () {
+        Route::get('color', 'index')->name('color.list');
+        Route::get('color/create', 'create')->name('color.create');
+        Route::get('color/{color}/edit', 'edit')->name('color.edit');
+        Route::get('color/{color}/delete', 'destroy')->name('color.destroy');
+
+        Route::put('color/{color}', 'update')->name('color.update');
+        Route::post('/color', 'store');
+    });
 });

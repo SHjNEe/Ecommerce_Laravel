@@ -10,11 +10,11 @@
             </div>
             <div class="card-body">
                 <?php if($errors->any()): ?>
-                    <div class="alert alert-warning">
-                        <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                            <div><?php echo e($error); ?></div>
-                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                    </div>
+                <div class="alert alert-warning">
+                    <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <div><?php echo e($error); ?></div>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                </div>
 
                 <?php endif; ?>
                 <form action="<?php echo e(url('admin/product')); ?>" method="POST" enctype="multipart/form-data">
@@ -37,8 +37,13 @@
                         </li>
                         <li class="nav-item" role="presentation">
                             <button class="nav-link" id="image-tab" data-bs-toggle="tab"
-                                data-bs-target="#image-tab-pane" type="button" role="tab"
-                                aria-controls="image-tab-pane" aria-selected="false">Image</button>
+                                data-bs-target="#image-tab-pane" type="button" role="tab" aria-controls="image-tab-pane"
+                                aria-selected="false">Image</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="color-tab" data-bs-toggle="tab"
+                                data-bs-target="#color-tab-pane" type="button" role="tab" aria-controls="color-tab-pane"
+                                aria-selected="false">Color</button>
                         </li>
 
                     </ul>
@@ -61,7 +66,7 @@ $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?>
-                                    <small class="text-danger"><?php echo e($message); ?></small>
+                                <small class="text-danger"><?php echo e($message); ?></small>
                                 <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
@@ -75,7 +80,7 @@ $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?>
-                                    <small class="text-danger"><?php echo e($message); ?></small>
+                                <small class="text-danger"><?php echo e($message); ?></small>
                                 <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
@@ -126,7 +131,7 @@ unset($__errorArgs, $__bag); ?>
 
                             <div class="mb-3">
                                 <label for="">Product Description</label>
-                                <textarea type="text" name="description" class="form-control" rows="10"></textarea>
+                                <textarea name="description" class="form-control" rows="10"></textarea>
                                 <?php $__errorArgs = ['description'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
@@ -243,21 +248,39 @@ unset($__errorArgs, $__bag); ?>
 
                             <div class="mb-3">
                                 <label for="">Trending</label><br>
-                                <input type="checkbox" name="trending"
-                                    style="width: 20px; height: 20px" />
+                                <input type="checkbox" name="trending" style="width: 20px; height: 20px" />
                             </div>
 
                             <div class="mb-3">
                                 <label for="">Status</label><br>
-                                <input type="checkbox" name="status"
-                                    style="width: 20px; height: 20px" />
+                                <input type="checkbox" name="status" style="width: 20px; height: 20px" />
                             </div>
                         </div>
                         <div class="tab-pane fade" id="image-tab-pane" role="tabpanel" aria-labelledby="image-tab"
                             tabindex="0">
                             <div class="mb-3 mt-3">
                                 <label for="">Upload Product Images</label>
-                                <input type="file" name="image" multiple class="form-control">
+                                <input type="file" name="image[]" multiple class="form-control">
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="color-tab-pane" role="tabpanel" aria-labelledby="color-tab"
+                            tabindex="0">
+                            <div class="mb-3 mt-3">
+                                <label for="" class="mb-3">Select Color</label>
+                                <div class="row">
+
+                                    <?php $__empty_1 = true; $__currentLoopData = $colors; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $color): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
+                                        <div class="col-md-3 border">
+                                            Color: <input type="checkbox" name="colors[]" value="<?php echo e($color->id); ?>"> <?php echo e($color->name); ?>
+
+                                            <br/>
+                                            Quantity: <input type="number" name="colorquantity[]" style="border: 1px solid; width: 70px;">
+                                        </div>
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
+                                    <h1>No colors</h1>
+                                    <?php endif; ?>
+
+                                </div>
                             </div>
                         </div>
 

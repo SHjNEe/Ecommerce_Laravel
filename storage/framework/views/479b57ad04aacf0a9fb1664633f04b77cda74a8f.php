@@ -7,12 +7,12 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+        <a class="nav-link" data-bs-toggle="collapse" href="#category" aria-expanded="false" aria-controls="category">
           <i class="mdi mdi-circle-outline menu-icon"></i>
           <span class="menu-title">Category</span>
           <i class="menu-arrow"></i>
         </a>
-        <div class="collapse" id="ui-basic">
+        <div class="collapse" id="category">
           <ul class="nav flex-column sub-menu">
             <li class="nav-item"> <a class="nav-link" href="<?php echo e(route('category.create')); ?>">Add Category</a></li>
             <li class="nav-item"> <a class="nav-link" href="<?php echo e(route('category.list')); ?>">Category List</a></li>
@@ -32,7 +32,7 @@
         </div>
       </li>
       <li class="nav-item">
-        <a class="nav-link" data-bs-toggle="collapse" href="#products" aria-expanded="false" aria-controls="brands">
+        <a class="nav-link" data-bs-toggle="collapse" href="#products" aria-expanded="false" aria-controls="products">
           <i class="mdi mdi-circle-outline menu-icon"></i>
           <span class="menu-title">Products</span>
           <i class="menu-arrow"></i>
@@ -45,11 +45,19 @@
         </div>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="pages/forms/basic_elements.html">
+        <a class="nav-link" data-bs-toggle="collapse" href="#colors" aria-expanded="false" aria-controls="colors">
           <i class="mdi mdi-view-headline menu-icon"></i>
-          <span class="menu-title">Form elements</span>
+          <span class="menu-title">Color</span>
+          <i class="menu-arrow"></i>
         </a>
+        <div class="collapse" id="colors">
+          <ul class="nav flex-column sub-menu">
+            <li class="nav-item"> <a class="nav-link" href="<?php echo e(url('admin/color')); ?>">Colors List</li>
+            <li class="nav-item"> <a class="nav-link" href="<?php echo e(url('admin/color/create')); ?>">Add Colors</a></li>
+          </ul>
+        </div>
       </li>
+
       <li class="nav-item">
         <a class="nav-link" href="pages/charts/chartjs.html">
           <i class="mdi mdi-chart-pie menu-icon"></i>
