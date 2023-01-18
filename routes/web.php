@@ -14,15 +14,13 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [App\Http\Controllers\Frontend\FrontendController::class, 'index']);
+Route::get('/collections', [App\Http\Controllers\Frontend\FrontendController::class, 'categories']);
+Route::get('/collections/{category_slug}', [App\Http\Controllers\Frontend\FrontendController::class, 'products']);
 
-Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
@@ -66,5 +64,17 @@ Route::prefix('admin')->middleware(['auth', 'isAdmin'])->group(function () {
 
         Route::put('color/{color}', 'update')->name('color.update');
         Route::post('/color', 'store');
+    });
+
+
+    Route::controller(App\Http\Controllers\Admin\SliderController::class)->group(function () {
+        Route::get('slider', 'index');
+        Route::get('slider/create', 'create');
+        Route::get('slider/{slider_id}/edit', 'edit');
+
+        Route::put('slider/{slider_id}', 'update');
+        Route::get('slider/{slider_id}/delete', 'destroy');
+
+        Route::post('slider', 'store');
     });
 });

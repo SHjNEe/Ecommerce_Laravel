@@ -21,6 +21,7 @@
                             <tr>
                                 <td>ID</td>
                                 <td>Name</td>
+                                <td>Category</td>
                                 <td>Slug</td>
                                 <td>Status</td>
                                 <td>Action</td>
@@ -31,6 +32,7 @@
                                 <tr>
                                     <td><?php echo e($brand->id); ?></td>
                                     <td><?php echo e($brand->name); ?></td>
+                                    <td><?php echo e($brand->categories->name); ?></td>
                                     <td><?php echo e($brand->slug); ?></td>
                                     <td><?php echo e($brand->status == '1' ? 'Hidden' : 'Visible'); ?></td>
                                     <td>

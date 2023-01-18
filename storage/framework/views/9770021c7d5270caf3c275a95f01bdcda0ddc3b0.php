@@ -9,6 +9,31 @@
             <form wire:submit.prevent="createBrand">
                 <div class="modal-body">
                     <div class="mb-3">
+                        <label for="">
+                            Select Category
+                        </label>
+                        <select wire:model.defer="category_id" id="" class="form-control">
+                            <option value="">--Select Category --</option>
+                            <?php $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                <option value="<?php echo e($category->id); ?>"><?php echo e($category->name); ?></option>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+
+
+                        </select>
+                        <?php $__errorArgs = ['category_id'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                        <small class="text-danger"> <?php echo e($message); ?></small>
+                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+
+
+                    </div>
+                    <div class="mb-3">
                         <label for="">Brand Name</label>
                         <input type="text" class="form-control" wire:model.defer="name">
                         <?php $__errorArgs = ['name'];
@@ -67,6 +92,31 @@ unset($__errorArgs, $__bag); ?>
             <div wire:loading.remove class="p-2">
                 <form wire:submit.prevent="updateBrand">
                     <div class="modal-body">
+                        <div class="mb-3">
+                            <label for="">
+                                Select Category
+                            </label>
+                            <select wire:model.defer="category_id" id="" class="form-control">
+                                <option value="">--Select Category --</option>
+                                <?php $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <option value="<?php echo e($category->id); ?>"><?php echo e($category->name); ?></option>
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+    
+    
+                            </select>
+                            <?php $__errorArgs = ['category_id'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                            <small class="text-danger"> <?php echo e($message); ?></small>
+                            <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
+    
+    
+                        </div>
                         <div class="mb-3">
                             <label for="">Brand Name</label>
                             <input type="text" class="form-control" wire:model.defer="name">

@@ -8,7 +8,7 @@
       </li>
       <li class="nav-item">
         <a class="nav-link" data-bs-toggle="collapse" href="#category" aria-expanded="false" aria-controls="category">
-          <i class="mdi mdi-circle-outline menu-icon"></i>
+          <i class="mdi mdi-chart-pie menu-icon"></i>
           <span class="menu-title">Category</span>
           <i class="menu-arrow"></i>
         </a>
@@ -33,7 +33,7 @@
       </li>
       <li class="nav-item">
         <a class="nav-link" data-bs-toggle="collapse" href="#products" aria-expanded="false" aria-controls="products">
-          <i class="mdi mdi-circle-outline menu-icon"></i>
+          <i class="mdi mdi-emoticon menu-icon"></i>
           <span class="menu-title">Products</span>
           <i class="menu-arrow"></i>
         </a>
@@ -54,6 +54,20 @@
           <ul class="nav flex-column sub-menu">
             <li class="nav-item"> <a class="nav-link" href="<?php echo e(url('admin/color')); ?>">Colors List</li>
             <li class="nav-item"> <a class="nav-link" href="<?php echo e(url('admin/color/create')); ?>">Add Colors</a></li>
+          </ul>
+        </div>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link" data-bs-toggle="collapse" href="#sliders" aria-expanded="false" aria-controls="sliders">
+          <i class="mdi mdi-view-headline menu-icon"></i>
+          <span class="menu-title">Slider</span>
+          <i class="menu-arrow"></i>
+        </a>
+        <div class="collapse" id="sliders">
+          <ul class="nav flex-column sub-menu">
+            <li class="nav-item"> <a class="nav-link" href="<?php echo e(url('admin/slider')); ?>">Slider List</li>
+            <li class="nav-item"> <a class="nav-link" href="<?php echo e(url('admin/slider/create')); ?>">Add Slider</a></li>
           </ul>
         </div>
       </li>
