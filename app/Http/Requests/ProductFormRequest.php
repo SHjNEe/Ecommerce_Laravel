@@ -34,14 +34,12 @@ class  ProductFormRequest extends FormRequest
             'selling_price' => ['required', 'integer'],
             'quantity' => ['required', 'integer'],
             'trending' => ['required'],
-            'status' => ['required'],
+            'status' => ['nullable'],
             'meta_title' => ['required', 'string'],
             'meta_description' => ['required', 'string'],
             'meta_keyword' => ['required', 'string'],
             'image' => 'nullable|array|max:5',
             'image.*' => 'mimes:jpeg,jpg,png',
-
-
         ];
     }
 }

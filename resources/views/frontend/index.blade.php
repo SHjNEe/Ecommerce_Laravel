@@ -12,7 +12,7 @@
       @foreach ($sliders as $key => $slider_item)
       <div class="carousel-item {{ $key == '0' ? 'active' : '' }}">
         @if($slider_item->image)
-        <img src="{{ asset($slider_item->image) }}" class="d-block w-100 " alt="...">
+        <img src="{{ asset($slider_item->image) }}" class="d-block w-100" alt="...">
         @endif
         <div class="carousel-caption d-none d-md-block">
             <div class="custom-carousel-content">

@@ -11,7 +11,7 @@
       <?php $__currentLoopData = $sliders; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $slider_item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
       <div class="carousel-item <?php echo e($key == '0' ? 'active' : ''); ?>">
         <?php if($slider_item->image): ?>
-        <img src="<?php echo e(asset($slider_item->image)); ?>" class="d-block w-100 " alt="...">
+        <img src="<?php echo e(asset($slider_item->image)); ?>" class="d-block w-100" alt="...">
         <?php endif; ?>
         <div class="carousel-caption d-none d-md-block">
             <div class="custom-carousel-content">

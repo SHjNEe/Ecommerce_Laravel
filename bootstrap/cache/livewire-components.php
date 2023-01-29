@@ -3,4 +3,5 @@
   'admin.category.index' => 'App\\Http\\Livewire\\Admin\\Category\\Index',
   'admin.product.index' => 'App\\Http\\Livewire\\Admin\\Product\\Index',
   'frontend.product.index' => 'App\\Http\\Livewire\\Frontend\\Product\\Index',
+  'frontend.product.view' => 'App\\Http\\Livewire\\Frontend\\Product\\View',
 );

@@ -11,16 +11,16 @@
             </div>
             <?php
 if (! isset($_instance)) {
-    $html = \Livewire\Livewire::mount('frontend.product.index', ['products' => $products,'category' => $category])->html();
-} elseif ($_instance->childHasBeenRendered('r4c2TVl')) {
-    $componentId = $_instance->getRenderedChildComponentId('r4c2TVl');
-    $componentTag = $_instance->getRenderedChildComponentTagName('r4c2TVl');
+    $html = \Livewire\Livewire::mount('frontend.product.index', ['category' => $category])->html();
+} elseif ($_instance->childHasBeenRendered('mdzM68G')) {
+    $componentId = $_instance->getRenderedChildComponentId('mdzM68G');
+    $componentTag = $_instance->getRenderedChildComponentTagName('mdzM68G');
     $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
-    $_instance->preserveRenderedChild('r4c2TVl');
+    $_instance->preserveRenderedChild('mdzM68G');
 } else {
-    $response = \Livewire\Livewire::mount('frontend.product.index', ['products' => $products,'category' => $category]);
+    $response = \Livewire\Livewire::mount('frontend.product.index', ['category' => $category]);
     $html = $response->html();
-    $_instance->logRenderedChild('r4c2TVl', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+    $_instance->logRenderedChild('mdzM68G', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
 }
 echo $html;
 ?>
