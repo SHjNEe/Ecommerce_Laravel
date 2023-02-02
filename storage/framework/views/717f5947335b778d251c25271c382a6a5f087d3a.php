@@ -33,12 +33,12 @@
                         <?php endif; ?>
                         <?php else: ?>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" >
                                 <i class="fa fa-shopping-cart"></i> Cart (0)
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="<?php echo e(url('wishlist')); ?>">
                                 <i class="fa fa-heart"></i> Wishlist (0)
                             </a>
                         </li>
