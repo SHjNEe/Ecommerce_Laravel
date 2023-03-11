@@ -33,13 +33,41 @@
                         <?php endif; ?>
                         <?php else: ?>
                         <li class="nav-item">
-                            <a class="nav-link" >
-                                <i class="fa fa-shopping-cart"></i> Cart (0)
+                            <a class="nav-link" href="<?php echo e(url('cart')); ?>" >
+                                <i class="fa fa-shopping-cart"></i> Cart (<?php
+if (! isset($_instance)) {
+    $html = \Livewire\Livewire::mount('frontend.cart.cart-count', [])->html();
+} elseif ($_instance->childHasBeenRendered('22mhU0Q')) {
+    $componentId = $_instance->getRenderedChildComponentId('22mhU0Q');
+    $componentTag = $_instance->getRenderedChildComponentTagName('22mhU0Q');
+    $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
+    $_instance->preserveRenderedChild('22mhU0Q');
+} else {
+    $response = \Livewire\Livewire::mount('frontend.cart.cart-count', []);
+    $html = $response->html();
+    $_instance->logRenderedChild('22mhU0Q', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+}
+echo $html;
+?>)
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="<?php echo e(url('wishlist')); ?>">
-                                <i class="fa fa-heart"></i> Wishlist (0)
+                                <i class="fa fa-heart"></i> Wishlist (<?php
+if (! isset($_instance)) {
+    $html = \Livewire\Livewire::mount('frontend.wishlist-count', [])->html();
+} elseif ($_instance->childHasBeenRendered('YHi8Idq')) {
+    $componentId = $_instance->getRenderedChildComponentId('YHi8Idq');
+    $componentTag = $_instance->getRenderedChildComponentTagName('YHi8Idq');
+    $html = \Livewire\Livewire::dummyMount($componentId, $componentTag);
+    $_instance->preserveRenderedChild('YHi8Idq');
+} else {
+    $response = \Livewire\Livewire::mount('frontend.wishlist-count', []);
+    $html = $response->html();
+    $_instance->logRenderedChild('YHi8Idq', $response->id(), \Livewire\Livewire::getRootElementTagName($html));
+}
+echo $html;
+?>)
                             </a>
                         </li>
 

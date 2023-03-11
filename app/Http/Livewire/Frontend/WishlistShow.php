@@ -14,4 +14,15 @@ class WishlistShow extends Component
             'wishlist' => $wishlist
         ]);
     }
+
+    public function removeWishListItem(int $id)
+    {
+        Wishlist::where('user_id', auth()->user()->id)->where('id', $id)->delete();
+        $this->emit('wishlistAddedOrUpdated');
+        $this->dispatchBrowserEvent('message', [
+            'text' => 'Remove successfully!',
+            'type' => 'success',
+            'status' => 200
+        ]);
+    }
 }
